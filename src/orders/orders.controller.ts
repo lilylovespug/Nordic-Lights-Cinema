@@ -38,6 +38,7 @@ export class OrdersController {
     private movieRepository: Repository<Movie>,
   ) { }
 
+  // Load order by id.
   @UseGuards(AuthGuard('jwt'))
   @Get(':id')
   getById(@Param('id') id: string, @Req() req) {
@@ -52,6 +53,7 @@ export class OrdersController {
     return this.orderRepository.find({ where: { userId: req.user.userId } });
   }
 
+  // Load oders of current user.
   @UseGuards(AuthGuard('jwt'))
   @Get()
   async getFullOrders(@Req() req) {
@@ -78,6 +80,7 @@ export class OrdersController {
     return fullOrders;
   }
 
+  // API for create order.
   @UseGuards(AuthGuard('jwt'))
   @Post()
   createOrder(@Body() dto: CreateOrderDto, @Req() req: any) {
@@ -95,6 +98,7 @@ export class OrdersController {
     return this.orderRepository.save(order);
   }
 
+  // API for update status of order by id.
   @UseGuards(AuthGuard('jwt'))
   @Put(':id/status')
   updateStatus(@Param('id') id: string, @Query('status') status: number) {
@@ -102,6 +106,7 @@ export class OrdersController {
     return this.orderRepository.update({ id: id }, { status: status });
   }
 
+  // API for delete order by id.
   @UseGuards(AuthGuard('jwt'))
   @Delete(':id')
   delete(@Param('id') id: string) {

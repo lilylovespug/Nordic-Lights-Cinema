@@ -11,6 +11,7 @@ export class MoviesController {
   ) {
   }
 
+  // Load movie data by id.
   @Get(':id')
   getById(@Param('id') id: string) {
     return this.movieRepository.findOne({ where: { id: id } });

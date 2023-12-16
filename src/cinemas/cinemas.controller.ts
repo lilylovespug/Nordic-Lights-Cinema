@@ -29,6 +29,7 @@ export class CinemasController {
     }
   }
 
+  // Load shows by country and cinemaID.
   @Get(':country/:cinemaId/shows')
   getShowsByCinema(@Param('country') country: string, @Param('cinemaId') cinemaId: string) {
     

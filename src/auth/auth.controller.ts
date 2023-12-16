@@ -17,6 +17,7 @@ export class AuthController {
     @InjectRepository(User, "users")
     private usersRepository: Repository<User>) { }
 
+  //This API will return access token if the user input correct credentials. Otherwise it will return empty token.
   @Post('login')
   async login(@Request() req: LoginDto) {
 
